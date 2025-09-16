@@ -28,7 +28,9 @@ def game():
 
     for challenge in challeneges_list:
         choice = choose_character(andy, dr)
-        challenge(choice)
-
+        if(challenge(choice)):
+            continue
+        else: 
+            break
 
 game()
