@@ -36,7 +36,7 @@ def breaching_ship(choice):
         return True
     
 
-def restoring_power(choice):
+def restore_power(choice):
 
     clear_screen()
     print(choice.name)
@@ -62,8 +62,21 @@ def restoring_power(choice):
 
 
 
-def extracting_data(choice):
-    print(choice.energy)
-    return True
+def extract_data(sections_to_look):
+    data_section = random.randint(0,9)
+    data_sections_list = []
+    for x in range(10):
+        data_sections_list.append(x == data_section)
+    
+    print(data_sections_list)
 
-print(restoring_power(tubi))
+    for index in sections_to_look:
+        if(data_sections_list[index]== True):
+            return True
+        
+    return False
+    
+    
+
+
+print(extract_data([2,3,4,7,8,9]))

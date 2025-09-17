@@ -20,7 +20,7 @@ def game():
     andy = characters.Character("Andy", 100, 10)
     dr = characters.Character("Dr. Aris", 10, 100)
 
-    challeneges_list = [challenges.breaching_ship, challenges.restoring_power, challenges.extracting_data]
+    challeneges_list = [challenges.breaching_ship, challenges.restore_power, challenges.extract_data]
 
     welcome_msg = "Welcome to Space Game"
     clear_screen()
