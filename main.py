@@ -3,13 +3,21 @@ import challenges
 from display_funcs import slow_print
 from display_funcs import clear_screen
 
+"""
+Main module that controls the flow of game.
+"""
 
 def game():
-
+    """
+    Game fuction creates two characters using Character Class and defines a choose_func to choose between characters for each challenge, loops through each challenge and asks user for another try if challenge fails. Returns True if all 3 challenges are sucessfull.
+    """
     andy = characters.Character("Andy", 100, 40)
     dr = characters.Character("Dr. Aris", 10, 150)
 
     def choose_character(character1 = andy , character2 = dr, intro = ""):
+        """
+        function to choose between defined characters, asks user for input, checks if input is valid otherwise asks again.
+        """
         slow_print(intro)
         slow_print("Choose One")
         slow_print(f"1. {character1.name}, Energy: {character1.energy}, Hacking: {character1.hacking}, Strength: {character1.strength}")
