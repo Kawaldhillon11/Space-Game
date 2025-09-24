@@ -21,5 +21,5 @@ class Character:
         """
 
         effectiveness_factor = random.randint(1,5)
-        return self.strength/effectiveness_factor
+        return self.strength/effectiveness_factor # returns float 
 

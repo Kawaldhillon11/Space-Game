@@ -20,7 +20,7 @@ def clear_screen():
     """
     Uses OS module to clear console window, depending on the host system os, different commands are used. for windows it uses 'cls' and for linux and maxOS its 'clear'
     """
-    if os.name == 'nt':  
+    if os.name == 'nt':  # for windows 
         _ = os.system('cls')
     else: 
-        _ = os.system('clear')
+        _ = os.system('clear') # for linux and macOS

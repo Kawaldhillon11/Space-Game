@@ -16,7 +16,7 @@ def determine_sequence(random_list : list, correct_list: list):
         index = 0
         found = False
         while not(found):
-            if(item == random_list[index]):
+            if(item == random_list[index]): # keeps checkeing each list item to match with random list item and tracks the index at which they matched
                 seq = seq + str(index+1)
                 found = True
             else:
@@ -32,15 +32,15 @@ def breaching_ship(choose_func):
     challenge_intro = "The Ships Docking Mechanism have been Damaged and cannot be Used, We need to find another way of Entering the Ship, If you are Up to the Challeneg One of you could try to Brake Open the Entrance Door. Each hit will consume 1 energy unit. \n"
     choice = choose_func(intro = challenge_intro)
 
-    door_structural_integrity = 180
-    while (choice.energy and (door_structural_integrity >= 0)):
+    door_structural_integrity = 180 
+    while (choice.energy and (door_structural_integrity >= 0)): # keeps calling hit and decrementing door_structural_integrity unit it reached 0 or below 0
         slow_print("Hitting")
         door_structural_integrity = door_structural_integrity - choice.hit()
         choice.energy = choice.energy -1
         print(f"energy left {choice.energy}")
         print(f"door integrrity {int(door_structural_integrity)}")
 
-    if(choice.energy == 0):
+    if(choice.energy == 0): # challenge fails if energy requirement not met
         return False
     elif (door_structural_integrity <= 0):
         return True
@@ -69,7 +69,7 @@ def restore_power_setup(choose_func):
     randomized_steps = random.sample(restore_power_steps, k= len(restore_power_steps))
 
     for index, step in enumerate(randomized_steps, start=1):
-        slow_print(str(index) + ". " + step)
+        slow_print(str(index) + ". " + step) #prints randomized list of steps
 
     time.sleep(choice.hacking/10)
     clear_screen()
@@ -100,13 +100,13 @@ def extract_data_setup(choose_func):
     clear_screen()
     challenge_intro = "Great! You are now Entering Data Storage of the Ship, The Storage has 10 Sections and the data we are looking for could be in any one of the Sections, Looking into each Section uses 1 Energy unit, So choose accordingly \n"
     choice  = choose_func(intro = challenge_intro)
-    if(choice.energy < 1):
+    if(choice.energy < 1): # challenge fails if energy requirement not met
         slow_print("Character Does not Have enough energy")
         return False
     slow_print(f"You can choose to look into {choice.energy} Sections")
     sections_to_look = input(f"Please Enter Maximum {choice.energy} Section numbers (e.g 0359) : ")
-    if(sections_to_look.isnumeric()):
-        sections_to_look_sanitized = sections_to_look[0:choice.energy]
+    if(sections_to_look.isnumeric()): # checks if all input digits are numeric
+        sections_to_look_sanitized = sections_to_look[0:choice.energy] # only keeps the maximum allowed digits from input
         if extract_data(sections_to_look_sanitized,  choice):
             slow_print("Data Found!")
             return True
@@ -119,12 +119,12 @@ def extract_data_setup(choose_func):
 
 def extract_data(sections_to_look, choice):
     """
-    Third challenge function, generates a list of 10 items(sections) and randomly sets one of the list item to true(data) and all other empty, uses player input to look for data in selected sections and returns true if found and false otherwise.  
+    Third challenge function, generates a list of 10 items(sections) and randomly sets one of the list item to True(data) and all other False(empty), uses player input to look for data in selected sections and returns true if found and false otherwise.  
     """
     data_section = random.randint(0,9)
     data_sections_list = []
     for x in range(10):
-        data_sections_list.append(x == data_section)
+        data_sections_list.append(x == data_section) #sets value of one of the list items to True, others to False
     
     for index in sections_to_look:
         choice.energy -= 1
