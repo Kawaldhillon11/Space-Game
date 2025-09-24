@@ -28,7 +28,7 @@ def breaching_ship(choose_func):
     """
     First Challenge function, introduces the challenge, calls choose_func to select a character for the challenege, creates a door_structural_integrity variable and then calls selected character's hit method to try to break the door, depending on the effectiveness of hit method keeps calling it until door_integrity becomes 0 or less than 0
     """
-
+    # the function does not interact with user just prints the status of challenege.
     challenge_intro = "The Ships Docking Mechanism have been Damaged and cannot be Used, We need to find another way of Entering the Ship, If you are Up to the Challeneg One of you could try to Brake Open the Entrance Door. Each hit will consume 1 energy unit. \n"
     choice = choose_func(intro = challenge_intro)
 
@@ -125,7 +125,7 @@ def extract_data(sections_to_look, choice):
     data_sections_list = []
     for x in range(10):
         data_sections_list.append(x == data_section) #sets value of one of the list items to True, others to False
-    
+    # the function does not interact with user just prints the status of challenege.
     for index in sections_to_look:
         choice.energy -= 1
         if(data_sections_list[int(index)]== True):
