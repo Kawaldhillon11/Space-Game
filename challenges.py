@@ -8,11 +8,11 @@ tubi = characters.Character("Tubi", 10, 50)
 
 def determine_sequence(random_list : list, correct_list: list):
     seq = ''
-    for item in random_list:
+    for item in correct_list:
         index = 0
         found = False
         while not(found):
-            if(item == correct_list[index]):
+            if(item == random_list[index]):
                 seq = seq + str(index+1)
                 found = True
             else:
@@ -20,7 +20,7 @@ def determine_sequence(random_list : list, correct_list: list):
     return seq
 
 def breaching_ship(choose_func):
-    challenge_intro = "The Ships Docking Mechanism have been Damaged and cannot be Used, We need to find another way of Entering the Ship, If you are Up to the Challeneg One of you could try to Brake Open the Entrance Door."
+    challenge_intro = "The Ships Docking Mechanism have been Damaged and cannot be Used, We need to find another way of Entering the Ship, If you are Up to the Challeneg One of you could try to Brake Open the Entrance Door. \n"
     choice = choose_func(intro = challenge_intro)
 
     door_structural_integrity = 180
@@ -38,11 +38,11 @@ def breaching_ship(choose_func):
     
 def restore_power_setup(choose_func):
     time.sleep(2)
-    challenge_intro = "Nice Job! You have Entered the Ship, now we need to Restore Power so that Required Data could be Extracted, To Restore Power we need to execute some steps in correct order, on the screen you will see jumbled steps due to damage to the ship, the Time for which the steps will remain on the screen depends on your hacking abilities, This Challenge will use 4 units of Energy"
+    challenge_intro = "Nice Job! You have Entered the Ship, now we need to Restore Power so that Required Data could be Extracted, To Restore Power we need to execute some steps in correct order, on the screen you will see jumbled steps due to damage to the ship, the Time for which the steps will remain on the screen depends on your hacking abilities, This Challenge will use 4 units of Energy \n"
     clear_screen()
     choice = choose_func(intro = challenge_intro)
 
-    if(choice.energy < 5):
+    if(choice.energy < 3):
         slow_print("Character Does not Have enough energy")
         return False
     choice.energy -= 4 
@@ -81,13 +81,13 @@ def restore_power(choice, restore_power_steps, randomized_steps, entered_sequenc
 def extract_data_setup(choose_func):
     time.sleep(2)
     clear_screen()
-    challenge_intro = "Great! You are now Entering Data Storage of the Ship, The Storage has 10 Sections and the data we are looking for could be in any one of the Sections, Looking into each Section uses 1 Energy unit, So choose accordingly"
+    challenge_intro = "Great! You are now Entering Data Storage of the Ship, The Storage has 10 Sections and the data we are looking for could be in any one of the Sections, Looking into each Section uses 1 Energy unit, So choose accordingly \n"
     choice  = choose_func(intro = challenge_intro)
     if(choice.energy < 1):
         slow_print("Character Does not Have enough energy")
         return False
     slow_print(f"You can choose to look into {choice.energy} Sections")
-    sections_to_look = input(f"Please Enter Maximum {choice.energy} Section numbers (e.g 12345) : ")
+    sections_to_look = input(f"Please Enter Maximum {choice.energy} Section numbers (e.g 0359) : ")
     if(sections_to_look.isnumeric()):
         sections_to_look_sanitized = sections_to_look[0:choice.energy]
         if extract_data(sections_to_look_sanitized,  choice):
@@ -109,7 +109,9 @@ def extract_data(sections_to_look, choice):
     for index in sections_to_look:
         choice.energy -= 1
         if(data_sections_list[int(index)]== True):
+            slow_print(f"Section {index}: Data")
             return True
+        slow_print(f"Section {index}: Empty")
         
     return False
     

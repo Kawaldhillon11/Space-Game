@@ -6,7 +6,7 @@ from display_funcs import clear_screen
 
 def game():
 
-    andy = characters.Character("Andy", 100, 150)
+    andy = characters.Character("Andy", 100, 40)
     dr = characters.Character("Dr. Aris", 10, 150)
 
     def choose_character(character1 = andy , character2 = dr, intro = ""):
@@ -27,7 +27,7 @@ def game():
 
     challeneges_list = [challenges.breaching_ship, challenges.restore_power_setup, challenges.extract_data_setup]
 
-    welcome_msg = "Welcome to Top Secret Mission, One of our Space Discovery ships got Stranded in Space near Mars, We think they might have been Attcked, They were comming back with valuable data, Your Mission is to Extract the Data and look for any Survivors"
+    welcome_msg = "Welcome to Top Secret Mission, One of our Space Discovery ships got Stranded in Space near Mars, We think they might have been Attcked, They were comming back with valuable data, Your Mission is to Extract the Data and look for any Survivors \n"
     clear_screen()
     slow_print(welcome_msg)
 
@@ -35,7 +35,7 @@ def game():
         running = True
         while running:
             if not (challenge(choose_character)):
-                if (input("Try Again (Y/N) ?").casefold() == "n"):
+                if (input("Try Again (Y/N)? ").casefold() == "n"):
                     running = False
                     return False
             else:
