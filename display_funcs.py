@@ -4,7 +4,7 @@ import os
 def slow_print(str):
     for  char in str:
         print(char, end="", flush= True)
-        time.sleep(0.01)    
+        time.sleep(0.02)    
     print()
 
 def clear_screen():
